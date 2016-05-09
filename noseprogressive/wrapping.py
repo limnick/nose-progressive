@@ -5,6 +5,7 @@ import __builtin__
 import cmd
 import pdb
 import sys
+from builtins import input
 
 
 def cmdloop(self, *args, **kwargs):
@@ -29,7 +30,7 @@ def cmdloop(self, *args, **kwargs):
         sys.stdout = wrapped_stdout
         return ret
 
-    orig_raw_input = raw_input
+    orig_raw_input = input
     if hasattr(sys.stdout, 'stream'):
         __builtin__.raw_input = unwrapping_raw_input
     # else if capture plugin has replaced it with a StringIO, don't bother.
